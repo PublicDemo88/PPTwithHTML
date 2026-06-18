@@ -62,3 +62,18 @@ flowchart TD
 ## Mini guion para explicarlo en 20-30 segundos
 
 "Un equipo pide un nuevo despliegue. EPAC traduce los requisitos de seguridad en politicas como codigo, las valida en pipeline y las aplica automaticamente con Azure Policy. El resultado lo ven CISO y equipos de seguridad en Microsoft Defender for Cloud, con evidencia continua para decidir remediacion o excepciones de forma controlada."
+
+## Despliegue automatico en GitHub Pages
+
+Ya incluido en el repositorio:
+- Workflow: `.github/workflows/deploy-pages.yml`
+- Soporte estatico: `.nojekyll`
+
+Como activarlo (una sola vez):
+1. Sube estos cambios a la rama `main`.
+2. En GitHub, entra en `Settings > Pages`.
+3. En `Source`, selecciona `GitHub Actions`.
+
+Desde ese momento:
+- Cada push a `main` despliega automaticamente la web.
+- La URL final suele ser `https://<usuario>.github.io/<repositorio>/`.

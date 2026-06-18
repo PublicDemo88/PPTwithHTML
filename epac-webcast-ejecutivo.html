@@ -6,14 +6,14 @@
   <title>EPAC Executive Webcast</title>
   <style>
     :root {
-      --bg: #f4f1ea;
-      --ink: #172532;
-      --ink-soft: #4b5d6b;
-      --brand: #0b6e4f;
-      --brand-soft: #13a06f;
-      --accent: #c84c09;
+      --bg: #fff4ec;
+      --ink: #333333;
+      --ink-soft: #4c4c4c;
+      --brand: #ff5800;
+      --brand-soft: #ffaf38;
+      --accent: #ce0569;
       --card: rgba(255, 255, 255, 0.82);
-      --shadow: 0 18px 35px rgba(23, 37, 50, 0.17);
+      --shadow: 0 18px 35px rgba(51, 51, 51, 0.17);
       --radius: 18px;
       --h1: clamp(2rem, 3.8vw, 3.4rem);
       --h2: clamp(1.7rem, 3vw, 2.7rem);
@@ -30,9 +30,9 @@
     body {
       margin: 0;
       height: 100%;
-      background: radial-gradient(circle at 8% 10%, #fef5df 0%, transparent 30%),
-        radial-gradient(circle at 85% 80%, #dff6eb 0%, transparent 40%),
-        linear-gradient(145deg, #f4f1ea 0%, #e8f0f5 45%, #f7f8fa 100%);
+      background: radial-gradient(circle at 8% 10%, #ffd6bf 0%, transparent 30%),
+        radial-gradient(circle at 85% 80%, #ffdbe8 0%, transparent 40%),
+        linear-gradient(145deg, #fff4ec 0%, #ffe9dc 45%, #fff8f2 100%);
       color: var(--ink);
       font-family: "Aptos", "Bahnschrift", "Segoe UI Variable Display", "Segoe UI", sans-serif;
       overflow: hidden;
@@ -88,7 +88,7 @@
       border-radius: 999px;
       padding: 0.35rem 0.8rem;
       font-weight: 600;
-      box-shadow: 0 9px 18px rgba(11, 110, 79, 0.25);
+      box-shadow: 0 9px 18px rgba(255, 88, 0, 0.25);
       text-transform: none;
       letter-spacing: 0;
     }
@@ -198,9 +198,9 @@
       padding: 0.65rem 0.9rem;
       font-size: 0.95rem;
       color: #fff;
-      background: linear-gradient(130deg, #2c3f50 0%, #0b6e4f 100%);
+      background: linear-gradient(130deg, var(--brand) 0%, var(--accent) 100%);
       cursor: pointer;
-      box-shadow: 0 8px 14px rgba(23, 37, 50, 0.25);
+      box-shadow: 0 8px 14px rgba(51, 51, 51, 0.2);
     }
 
     button:focus-visible {
