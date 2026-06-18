@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EPAC Executive Webcast</title>
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --ink: #172532;
+      --ink-soft: #4b5d6b;
+      --brand: #0b6e4f;
+      --brand-soft: #13a06f;
+      --accent: #c84c09;
+      --card: rgba(255, 255, 255, 0.82);
+      --shadow: 0 18px 35px rgba(23, 37, 50, 0.17);
+      --radius: 18px;
+      --h1: clamp(2rem, 3.8vw, 3.4rem);
+      --h2: clamp(1.7rem, 3vw, 2.7rem);
+      --h3: clamp(1.2rem, 2.1vw, 1.5rem);
+      --body: clamp(1rem, 1.5vw, 1.2rem);
+      --small: 0.92rem;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      height: 100%;
+      background: radial-gradient(circle at 8% 10%, #fef5df 0%, transparent 30%),
+        radial-gradient(circle at 85% 80%, #dff6eb 0%, transparent 40%),
+        linear-gradient(145deg, #f4f1ea 0%, #e8f0f5 45%, #f7f8fa 100%);
+      color: var(--ink);
+      font-family: "Aptos", "Bahnschrift", "Segoe UI Variable Display", "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+
+    .deck {
+      height: 100%;
+      width: 100%;
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      height: 100%;
+      width: 100%;
+      padding: clamp(1.3rem, 2vw, 2rem) clamp(1.5rem, 3vw, 4rem);
+      position: absolute;
+      top: 0;
+      left: 0;
+      animation: slideIn 0.4s ease;
+    }
+
+    .slide.active {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 0.9rem;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(10px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: var(--small);
+      letter-spacing: 0.04em;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+    }
+
+    .badge {
+      background: linear-gradient(130deg, var(--brand) 0%, var(--brand-soft) 100%);
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.35rem 0.8rem;
+      font-weight: 600;
+      box-shadow: 0 9px 18px rgba(11, 110, 79, 0.25);
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: var(--h1);
+      line-height: 1.08;
+    }
+
+    h2 {
+      font-size: var(--h2);
+      line-height: 1.12;
+    }
+
+    h3 {
+      font-size: var(--h3);
+      color: var(--brand);
+    }
+
+    p,
+    li {
+      font-size: var(--body);
+      line-height: 1.45;
+    }
+
+    .content {
+      display: grid;
+      align-content: center;
+      gap: 1rem;
+    }
+
+    .content.center {
+      text-align: center;
+      justify-items: center;
+    }
+
+    .lead {
+      font-size: clamp(1.1rem, 1.9vw, 1.45rem);
+      color: var(--ink-soft);
+      max-width: 68ch;
+    }
+
+    .grid {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+      display: grid;
+      gap: 0.5rem;
+      align-content: start;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 0.32rem;
+    }
+
+    .accent {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--ink-soft);
+      font-size: var(--small);
+    }
+
+    .controls {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      z-index: 10;
+    }
+
+    button {
+      border: 0;
+      border-radius: 12px;
+      padding: 0.65rem 0.9rem;
+      font-size: 0.95rem;
+      color: #fff;
+      background: linear-gradient(130deg, #2c3f50 0%, #0b6e4f 100%);
+      cursor: pointer;
+      box-shadow: 0 8px 14px rgba(23, 37, 50, 0.25);
+    }
+
+    button:focus-visible {
+      outline: 3px solid #f5b78d;
+      outline-offset: 2px;
+    }
+
+    .kpi {
+      font-size: clamp(1.8rem, 3vw, 2.9rem);
+      font-weight: 800;
+      color: var(--brand);
+      line-height: 1;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.7rem;
+    }
+
+    .step {
+      padding: 0.9rem;
+      border-radius: 14px;
+      background: linear-gradient(165deg, rgba(255, 255, 255, 0.92), rgba(242, 252, 247, 0.8));
+      border: 1px solid rgba(11, 110, 79, 0.25);
+      box-shadow: 0 8px 15px rgba(15, 54, 43, 0.12);
+    }
+
+    .placeholder {
+      min-height: 9rem;
+      border: 2px dashed rgba(11, 110, 79, 0.45);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.45);
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      color: var(--ink-soft);
+      font-size: 1.02rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .vs {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .chip {
+      padding: 0.3rem 0.7rem;
+      background: #eff9f5;
+      border: 1px solid #97c8b5;
+      border-radius: 999px;
+      color: #1f4d3f;
+      width: fit-content;
+      font-size: var(--small);
+      font-weight: 600;
+    }
+
+    @media (max-width: 920px) {
+      .grid.two,
+      .grid.three,
+      .timeline,
+      .vs {
+        grid-template-columns: 1fr;
+      }
+
+      .slide.active {
+        overflow-y: auto;
+      }
+
+      html,
+      body {
+        overflow: auto;
+      }
+
+      .controls {
+        position: static;
+        padding: 1rem;
+        justify-content: center;
+      }
+    }
+
+    @media print {
+      html,
+      body {
+        overflow: visible;
+        background: #fff;
+      }
+
+      .slide {
+        display: block !important;
+        position: relative;
+        page-break-after: always;
+        min-height: 100vh;
+      }
+
+      .controls {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="deck" id="deck">
+    <section class="slide active" data-title="Portada">
+      <div class="topline">
+        <span>Webcast ejecutivo</span>
+        <span class="badge">EPAC · Enterprise Policy As Code</span>
+      </div>
+      <div class="content center">
+        <h1>Gobernanza en Azure como ventaja competitiva</h1>
+        <p class="lead">De controles manuales a políticas automatizadas con Azure Policy, Microsoft Defender for Cloud y pipelines en GitHub Actions o Azure DevOps.</p>
+        <div class="chip">Duración: 15 minutos</div>
+      </div>
+      <div class="footer">
+        <span>Audiencia: directivos, managers, jefes de proyecto, ventas</span>
+        <span>1 / 10</span>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Presentación personal">
+      <div class="topline">
+        <span>Introducción</span>
+        <span class="badge">Tu presentación</span>
+      </div>
+      <div class="content">
+        <h2>Quién soy</h2>
+        <div class="placeholder">Espacio en blanco para tu presentación personal<br />
+          (nombre, rol, experiencia, foco)
+        </div>
+      </div>
+      <div class="footer">
+        <span>Mensaje objetivo: credibilidad + contexto</span>
+        <span>2 / 10</span>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Problema actual">
+      <div class="topline">
+        <span>Hook inicial</span>
+        <span class="badge">Dolor de negocio</span>
+      </div>
+      <div class="content">
+        <h2>El coste oculto de la gobernanza manual</h2>
+        <div class="grid three">
+          <article class="card">
+            <h3>Lentitud</h3>
+            <p>Los controles llegan tarde y frenan el arranque de nuevos proyectos.</p>
+          </article>
+          <article class="card">
+            <h3>Riesgo</h3>
+            <p>Desviaciones de seguridad y cumplimiento detectadas demasiado tarde.</p>
+          </article>
+          <article class="card">
+            <h3>Falta de visibilidad</h3>
+            <p>Sin trazabilidad clara, es difícil justificar decisiones ante auditoría.</p>
+          </article>
+        </div>
+        <p class="lead"><span class="accent">Idea fuerza:</span> las políticas ya no se documentan, se ejecutan.</p>
+      </div>
+      <div class="footer">
+        <span>Objetivo: crear urgencia y foco</span>
+        <span>3 / 10</span>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Qué es EPAC">
+      <div class="topline">
+        <span>Concepto</span>
+        <span class="badge">Definición simple</span>
+      </div>
+      <div class="content">
+        <h2>EPAC en una frase</h2>
+        <p class="lead">Enterprise Policy As Code es tratar la gobernanza como software: versionable, revisable y desplegable.</p>
+        <div class="grid two">
+          <article class="card">
+            <h3>Como CI/CD para gobernanza</h3>
+            <ul>
+              <li>Políticas en repositorio</li>
+              <li>Revisión por pull request</li>
+              <li>Despliegue automatizado</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Resultados esperados</h3>
+            <ul>
+              <li>Escalabilidad organizativa</li>
+              <li>Auditoría continua</li>
+              <li>Repetibilidad sin drift</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+      <div class="footer">
+        <span>Objetivo: simplificar el concepto para negocio</span>
+        <span>4 / 10</span>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Valor negocio">
+      <div class="topline">
+        <span>Propuesta de valor</span>
+        <span class="badge">Core ejecutivo</span>
+      </div>
+      <div class="content">
+        <h2>Valor para negocio en cuatro ejes</h2>
+        <div class="grid two">
+          <article class="card">
+            <h3>Gobierno y seguridad</h3>
+            <p>Azure Policy + Defender for Cloud para cumplimiento automático y prevención temprana.</p>
+          </article>
+          <article class="card">
+            <h3>Agilidad</h3>
+            <p>Onboarding más rápido con reglas predefinidas y menos aprobaciones manuales.</p>
+          </article>
+          <article class="card">
+            <h3>Mantenimiento con IA</h3>
+            <p>Insights para priorizar deuda de seguridad y reducir esfuerzo operativo.</p>
+          </article>
+          <article class="card">
+            <h3>Automatización de entrega</h3>
+            <p>GitHub Actions o Azure DevOps aseguran consistencia y trazabilidad end-to-end.</p>
+          </article>
+        </div>
+      </div>
+      <div class="footer">
+        <span>Objetivo: ligar tecnología con impacto de negocio</span>
+        <span>5 / 10</span>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Seguridad y compliance">
+      <div class="topline">
+        <span>Eje 1</span>
+        <span class="badge">Azure Policy + Defender</span>
+      </div>
+      <div class="content">
+        <h2>Seguridad y cumplimiento como estándar</h2>
+        <div class="grid three">
+          <article class="card">
+            <div class="kpi">Preventivo</div>
+            <p>Bloqueo o auditoría de configuraciones no permitidas desde el inicio.</p>
+          </article>
+          <article class="card">
+            <div class="kpi">Continuo</div>
+            <p>Defender for Cloud identifica exposición y recomienda acciones priorizadas.</p>
+          </article>
+          <article class="card">
+            <div class="kpi">Trazable</div>
+            <p>Evidencia automática para auditoría y reporting a dirección.</p>
+          </article>
+        </div>
+      </div>
+      <div class="footer">
+        <span>Beneficio: menor riesgo regulatorio y reputacional</span>
+        <span>6 / 10</span>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Agilidad + IA + Pipelines">
+      <div class="topline">
+        <span>Ejes 2, 3 y 4</span>
+        <span class="badge">Velocidad operativa</span>
+      </div>
+      <div class="content">
+        <h2>Agilización, IA y automatización de punta a punta</h2>
+        <div class="grid three">
+          <article class="card">
+            <h3>Agilidad</h3>
+            <ul>
+              <li>Plantillas y reglas compartidas</li>
+              <li>Menos ciclos de revisión</li>
+              <li>Time-to-market más corto</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>IA para mantenimiento</h3>
+            <ul>
+              <li>Priorización de riesgos</li>
+              <li>Recomendaciones accionables</li>
+              <li>Foco en lo que más impacta</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>GitHub Actions / Azure DevOps</h3>
+            <ul>
+              <li>Validación en pipeline</li>
+              <li>Deploy controlado</li>
+              <li>Sin deriva entre entornos</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+      <div class="footer">
+        <span>Beneficio: más velocidad con más control</span>
+        <span>7 / 10</span>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Cómo funciona">
+      <div class="topline">
+        <span>Modelo operativo</span>
+        <span class="badge">Flujo alto nivel</span>
+      </div>
+      <div class="content">
+        <h2>Pipeline EPAC de extremo a extremo</h2>
+        <div class="timeline">
+          <article class="step">
+            <h3>1. Definir</h3>
+            <p>Políticas, iniciativas y excepciones versionadas como código.</p>
+          </article>
+          <article class="step">
+            <h3>2. Validar</h3>
+            <p>Revisión por PR y validaciones automáticas en pipeline.</p>
+          </article>
+          <article class="step">
+            <h3>3. Desplegar</h3>
+            <p>Publicación controlada en landing zones y suscripciones.</p>
+          </article>
+          <article class="step">
+            <h3>4. Monitorizar</h3>
+            <p>Compliance continuo y remediación guiada con Defender.</p>
+          </article>
+        </div>
+      </div>
+      <div class="footer">
+        <span>Mensaje: gobernanza integrada en delivery</span>
+        <span>8 / 10</span>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Caso práctico">
+      <div class="topline">
+        <span>Ejemplo rápido</span>
+        <span class="badge">Antes vs después</span>
+      </div>
+      <div class="content">
+        <h2>Caso: recursos sin tagging y regiones no permitidas</h2>
+        <div class="vs">
+          <article class="card">
+            <h3>Antes</h3>
+            <ul>
+              <li>Control manual y reactivo</li>
+              <li>Errores recurrentes en despliegue</li>
+              <li>Correcciones costosas a posteriori</li>
+            </ul>
+          </article>
+          <div class="kpi">→</div>
+          <article class="card">
+            <h3>Después (EPAC)</h3>
+            <ul>
+              <li>Tagging obligatorio y policy por región</li>
+              <li>Incumplimiento detectado o bloqueado al momento</li>
+              <li>Menos retrabajo y mejor gobierno financiero</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+      <div class="footer">
+        <span>Objetivo: aterrizar valor con un ejemplo entendible</span>
+        <span>9 / 10</span>
+      </div>
+    </section>
+
+    <section class="slide" data-title="Cierre">
+      <div class="topline">
+        <span>Call to action</span>
+        <span class="badge">Siguiente paso</span>
+      </div>
+      <div class="content center">
+        <h2>EPAC convierte la gobernanza en una ventaja competitiva</h2>
+        <p class="lead">Empezar pequeño, aprender rápido y escalar con control.</p>
+        <div class="grid two" style="width:min(100%, 900px)">
+          <article class="card">
+            <h3>Piloto recomendado</h3>
+            <ul>
+              <li>1 landing zone</li>
+              <li>3-5 políticas prioritarias</li>
+              <li>1 pipeline corporativo</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Resultado esperado</h3>
+            <ul>
+              <li>Más velocidad de entrega</li>
+              <li>Menor riesgo operacional</li>
+              <li>Mayor confianza para escalar</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+      <div class="footer">
+        <span>Gracias</span>
+        <span>10 / 10</span>
+      </div>
+    </section>
+  </div>
+
+  <div class="controls" aria-label="Controles de presentación">
+    <button id="prev" type="button">Anterior</button>
+    <button id="next" type="button">Siguiente</button>
+  </div>
+
+  <script>
+    (function () {
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const prevBtn = document.getElementById('prev');
+      const nextBtn = document.getElementById('next');
+      let current = 0;
+
+      function show(index) {
+        current = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === current);
+        });
+      }
+
+      prevBtn.addEventListener('click', () => show(current - 1));
+      nextBtn.addEventListener('click', () => show(current + 1));
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') {
+          show(current + 1);
+        }
+        if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+          show(current - 1);
+        }
+        if (event.key === 'Home') {
+          show(0);
+        }
+        if (event.key === 'End') {
+          show(slides.length - 1);
+        }
+      });
+
+      show(0);
+    })();
+  </script>
+</body>
+</html>
