@@ -152,6 +152,26 @@
       z-index: 10;
     }
 
+    .home-fab {
+      position: fixed;
+      top: 14px;
+      right: 16px;
+      z-index: 12;
+      text-decoration: none;
+      color: #ffffff;
+      background: linear-gradient(120deg, var(--brand), var(--accent));
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+    }
+
+    .home-fab:hover {
+      filter: brightness(1.05);
+    }
+
     button {
       border: 1px solid var(--line);
       background: linear-gradient(130deg, var(--brand), var(--accent));
@@ -168,8 +188,150 @@
       font-weight: 700;
     }
 
+    .cover-slide {
+      padding: 0;
+      color: #ffffff;
+      overflow: hidden;
+      grid-template-rows: 1fr;
+    }
+
+    .cover-media {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(180deg, rgba(8, 20, 28, 0.2), rgba(8, 20, 28, 0.74)),
+        linear-gradient(112deg, rgba(6, 62, 84, 0.8), rgba(21, 113, 142, 0.3)),
+        url("https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1920&q=80");
+      background-size: cover;
+      background-position: center;
+      z-index: -2;
+      transform: scale(1.03);
+    }
+
+    .cover-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.56));
+    }
+
+    .cover-ribbon {
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+      filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.25));
+      opacity: 0.94;
+    }
+
+    .cover-ribbon-a {
+      left: -10%;
+      right: 22%;
+      bottom: 22%;
+      height: 46px;
+      background: linear-gradient(90deg, #f3520b, #ff7422);
+      transform: rotate(-10deg);
+    }
+
+    .cover-ribbon-b {
+      left: 56%;
+      right: -8%;
+      bottom: 28%;
+      height: 34px;
+      background: linear-gradient(90deg, #f4a918, #be0f65);
+      transform: rotate(6deg);
+    }
+
+    .cover-top {
+      position: absolute;
+      top: clamp(22px, 4vw, 42px);
+      left: clamp(22px, 5vw, 66px);
+      right: clamp(22px, 5vw, 66px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .cover-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .cover-brand-mark {
+      width: clamp(38px, 5vw, 56px);
+      height: clamp(24px, 3vw, 34px);
+      border: 3px solid #ffffff;
+      border-radius: 70% 40% 65% 45%;
+      transform: rotate(-12deg);
+      opacity: 0.92;
+    }
+
+    .cover-slogan {
+      font-size: clamp(1rem, 2vw, 1.9rem);
+      font-weight: 700;
+    }
+
+    .cover-content {
+      position: absolute;
+      left: clamp(22px, 5vw, 66px);
+      right: clamp(22px, 5vw, 66px);
+      bottom: clamp(52px, 10vh, 110px);
+      z-index: 2;
+    }
+
+    .cover-title {
+      font-family: "Space Grotesk", "Segoe UI", sans-serif;
+      font-size: clamp(2.2rem, 6vw, 5.2rem);
+      line-height: 1.04;
+      max-width: 14ch;
+      font-weight: 700;
+      text-wrap: balance;
+      margin: 0;
+    }
+
+    .cover-subtitle {
+      margin-top: 18px;
+      font-size: clamp(1.2rem, 2.2vw, 2rem);
+      max-width: 42ch;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.96);
+    }
+
+    .cover-footer {
+      position: absolute;
+      left: clamp(22px, 5vw, 66px);
+      right: clamp(22px, 5vw, 66px);
+      bottom: clamp(14px, 2vw, 24px);
+      color: rgba(255, 255, 255, 0.9);
+      z-index: 2;
+    }
+
     @media (max-width: 980px) {
       .two, .three, .four { grid-template-columns: 1fr; }
+
+      .cover-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cover-title {
+        max-width: 16ch;
+      }
+
+      .cover-subtitle {
+        max-width: 30ch;
+      }
+
+      .home-fab {
+        top: 10px;
+        right: 12px;
+      }
+
       html, body { overflow: auto; }
       .slide { overflow-y: auto; padding-bottom: 90px; }
     }
@@ -182,6 +344,7 @@
   </style>
 </head>
 <body>
+  <a class="home-fab" href="index.html" title="Volver al menu principal">Home</a>
   <main class="deck" aria-label="Webcast 2 tecnico EPAC">
     <section class="slide active" data-title="Portada">
       <header><span class="kicker">Webcast 2 · Tecnico</span></header>
@@ -193,7 +356,17 @@
           <span class="chip">Formato: intro + demo</span>
         </div>
       </div>
-      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>1 / 11</span></footer>
+      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>1 / 12</span></footer>
+    </section>
+
+    <section class="slide" data-title="Meeting notice">
+      <header><span class="kicker">Meeting Notice</span></header>
+      <div class="panel">
+        <h2>Attention: This meeting will be recorded!</h2>
+        <p class="subtitle" style="margin-top: 10px;">The shared content, the voice of each speaker and all instant messages will be recorded.</p>
+        <p class="subtitle" style="margin-top: 10px;">If you do not agree, please leave the call now and watch the recording afterwards. The recording and the Powerpoint slides will be uploaded to our Software Engineering Teams general channel after the call.</p>
+      </div>
+      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>2 / 12</span></footer>
     </section>
 
     <section class="slide" data-title="Objetivo">
@@ -206,7 +379,7 @@
           <article class="card"><h3>Ejecucion real</h3><p>Pipeline, despliegue, visibilidad en Defender for Cloud y demo guiada.</p></article>
         </div>
       </div>
-      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>2 / 11</span></footer>
+      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>3 / 12</span></footer>
     </section>
 
     <section class="slide" data-title="EPAC base">
@@ -233,7 +406,7 @@
           </ul>
         </div>
       </div>
-      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>3 / 11</span></footer>
+      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>4 / 12</span></footer>
     </section>
 
     <section class="slide" data-title="Frameworks seguridad">
@@ -248,7 +421,7 @@
         </div>
         <p class="subtitle" style="margin-top: 10px;">EPAC no reemplaza el framework: lo operacionaliza en Azure.</p>
       </div>
-      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>4 / 11</span></footer>
+      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>5 / 12</span></footer>
     </section>
 
     <section class="slide" data-title="Estructura repositorio">
@@ -277,7 +450,7 @@
           </ul>
         </div>
       </div>
-      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>5 / 11</span></footer>
+      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>6 / 12</span></footer>
     </section>
 
     <section class="slide" data-title="Flujo CI/CD">
@@ -295,7 +468,7 @@ approve: security gate
 deploy: Azure Policy assignments
 report: compliance snapshot</div>
       </div>
-      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>6 / 11</span></footer>
+      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>7 / 12</span></footer>
     </section>
 
     <section class="slide" data-title="Visibilidad">
@@ -317,7 +490,7 @@ report: compliance snapshot</div>
           <div class="card" style="margin-top: 8px;"><h3>Equipos app</h3><p>Feedback temprano de cumplimiento durante despliegues.</p></div>
         </div>
       </div>
-      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>7 / 11</span></footer>
+      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>8 / 12</span></footer>
     </section>
 
     <section class="slide" data-title="Demo plan">
@@ -331,7 +504,7 @@ report: compliance snapshot</div>
         </div>
         <p class="subtitle" style="margin-top: 10px;">Tip: prepara una politica simple (tag requerido o region permitida) para que el impacto se vea en minutos.</p>
       </div>
-      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>8 / 11</span></footer>
+      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>9 / 12</span></footer>
     </section>
 
     <section class="slide" data-title="Escalado">
@@ -344,7 +517,7 @@ report: compliance snapshot</div>
           <article class="card"><h3>Fase 3</h3><p>Integracion completa con modelo operativo y auditoria.</p></article>
         </div>
       </div>
-      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>9 / 11</span></footer>
+      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>10 / 12</span></footer>
     </section>
 
     <section class="slide" data-title="Q&A">
@@ -358,20 +531,21 @@ report: compliance snapshot</div>
           <li>Como medir avance y calidad del cumplimiento por equipo.</li>
         </ul>
       </div>
-      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>10 / 11</span></footer>
+      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>11 / 12</span></footer>
     </section>
 
-    <section class="slide" data-title="Cierre">
-      <header><span class="kicker">Cierre tecnico</span></header>
+    <section class="slide" data-title="Q&A final">
+      <header><span class="kicker">Q&A final</span></header>
       <div class="panel">
-        <h2>Resultado esperado del Webcast 2</h2>
-        <p class="subtitle">La audiencia sale con una vision clara de como organizar EPAC, desplegarlo con pipelines y operar cumplimiento continuo con visibilidad real en Azure.</p>
-        <div style="margin-top: 10px;">
-          <span class="chip">Siguiente paso: demo completa en entorno real</span>
-          <span class="chip">Siguiente paso: backlog tecnico de adopcion</span>
+        <h2>Preguntas y respuestas tecnicas</h2>
+        <p class="subtitle">Ultimo bloque para dudas sobre arquitectura, pipeline, despliegue y operacion de EPAC en produccion.</p>
+        <div class="three" style="margin-top: 10px;">
+          <article class="card"><h3>Arquitectura</h3><p>Scopes, estructura de repositorio y modelo multi-tenant.</p></article>
+          <article class="card"><h3>DevOps</h3><p>Homologacion de pipelines, controles y rollout por entornos.</p></article>
+          <article class="card"><h3>Operacion</h3><p>Defender for Cloud, excepciones y seguimiento continuo.</p></article>
         </div>
       </div>
-      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>11 / 11</span></footer>
+      <footer class="footer"><a class="home" href="index.html">Volver al indice</a><span>12 / 12</span></footer>
     </section>
 
     <div class="controls" aria-label="Controles de diapositivas">

@@ -292,6 +292,26 @@
       z-index: 4;
     }
 
+    .home-fab {
+      position: fixed;
+      top: 14px;
+      right: 16px;
+      z-index: 6;
+      text-decoration: none;
+      color: #ffffff;
+      background: linear-gradient(120deg, var(--brand), var(--accent));
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+    }
+
+    .home-fab:hover {
+      filter: brightness(1.05);
+    }
+
     button {
       border: 1px solid var(--line);
       background: #ffffffe0;
@@ -311,6 +331,129 @@
       color: var(--muted);
     }
 
+    .cover-slide {
+      padding: 0;
+      color: #ffffff;
+      overflow: hidden;
+      grid-template-rows: 1fr;
+    }
+
+    .cover-media {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(180deg, rgba(8, 20, 28, 0.2), rgba(8, 20, 28, 0.75)),
+        linear-gradient(112deg, rgba(6, 62, 84, 0.8), rgba(21, 113, 142, 0.3)),
+        url("https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1920&q=80");
+      background-size: cover;
+      background-position: center;
+      z-index: -2;
+      transform: scale(1.03);
+    }
+
+    .cover-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.55));
+    }
+
+    .cover-ribbon {
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+      filter: drop-shadow(0 12px 16px rgba(0, 0, 0, 0.25));
+      opacity: 0.94;
+    }
+
+    .cover-ribbon-a {
+      left: -10%;
+      right: 22%;
+      bottom: 22%;
+      height: 46px;
+      background: linear-gradient(90deg, #f3520b, #ff7422);
+      transform: rotate(-10deg);
+    }
+
+    .cover-ribbon-b {
+      left: 56%;
+      right: -8%;
+      bottom: 28%;
+      height: 34px;
+      background: linear-gradient(90deg, #f4a918, #be0f65);
+      transform: rotate(6deg);
+    }
+
+    .cover-top {
+      position: absolute;
+      top: clamp(22px, 4vw, 42px);
+      left: clamp(22px, 5vw, 66px);
+      right: clamp(22px, 5vw, 66px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .cover-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .cover-brand-mark {
+      width: clamp(38px, 5vw, 56px);
+      height: clamp(24px, 3vw, 34px);
+      border: 3px solid #ffffff;
+      border-radius: 70% 40% 65% 45%;
+      transform: rotate(-12deg);
+      opacity: 0.92;
+    }
+
+    .cover-slogan {
+      font-size: clamp(1rem, 2vw, 1.9rem);
+      font-weight: 700;
+    }
+
+    .cover-content {
+      position: absolute;
+      left: clamp(22px, 5vw, 66px);
+      right: clamp(22px, 5vw, 66px);
+      bottom: clamp(52px, 10vh, 110px);
+      z-index: 2;
+    }
+
+    .cover-title {
+      font-family: "Space Grotesk", "Segoe UI", sans-serif;
+      font-size: clamp(2.2rem, 6vw, 5.2rem);
+      line-height: 1.04;
+      max-width: 14ch;
+      font-weight: 700;
+      text-wrap: balance;
+      margin: 0;
+    }
+
+    .cover-subtitle {
+      margin-top: 18px;
+      font-size: clamp(1.2rem, 2.2vw, 2rem);
+      max-width: 42ch;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.96);
+    }
+
+    .cover-footer {
+      position: absolute;
+      left: clamp(22px, 5vw, 66px);
+      right: clamp(22px, 5vw, 66px);
+      bottom: clamp(14px, 2vw, 24px);
+      color: rgba(255, 255, 255, 0.9);
+      z-index: 2;
+    }
+
     @media (max-width: 980px) {
       .two-col,
       .three-col,
@@ -320,9 +463,27 @@
         grid-template-columns: 1fr;
       }
 
+      .cover-top {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .cover-title {
+        max-width: 16ch;
+      }
+
+      .cover-subtitle {
+        max-width: 30ch;
+      }
+
       .slide {
         overflow-y: auto;
         padding-bottom: 84px;
+      }
+
+      .home-fab {
+        top: 10px;
+        right: 12px;
       }
 
       .progress {
@@ -357,6 +518,7 @@
   </style>
 </head>
 <body>
+  <a class="home-fab" href="index.html" title="Volver al menu principal">Home</a>
   <main class="deck" aria-label="Presentacion EPAC">
     <div class="shape shape-a"></div>
     <div class="shape shape-b"></div>
@@ -375,8 +537,20 @@
       </div>
       <footer class="slide-footer">
         <span>EPAC Executive Briefing</span>
-        <span class="tiny">1 / 10</span>
+        <span class="tiny">1 / 11</span>
       </footer>
+    </section>
+
+    <section class="slide" data-title="Meeting notice" data-time="0.5 min">
+      <header>
+        <span class="kicker">Meeting Notice</span>
+      </header>
+      <div class="panel" style="max-width: 1100px;">
+        <h2>Attention: This meeting will be recorded!</h2>
+        <p class="subtitle" style="margin-top: 10px;">The shared content, the voice of each speaker and all instant messages will be recorded.</p>
+        <p class="subtitle" style="margin-top: 10px;">If you do not agree, please leave the call now and watch the recording afterwards. The recording and the Powerpoint slides will be uploaded to our Software Engineering Teams general channel after the call.</p>
+      </div>
+      <footer class="slide-footer"><span>Notice</span><span class="tiny">2 / 11</span></footer>
     </section>
 
     <section class="slide" data-title="Agenda" data-time="1 min">
@@ -396,7 +570,7 @@
           <div class="value-card"><h3>6. Cierre</h3><p>Plan de adopcion para arrancar en 90 dias.</p></div>
         </div>
       </div>
-      <footer class="slide-footer"><span>Duracion objetivo por bloque incluida en notas</span><span class="tiny">2 / 10</span></footer>
+      <footer class="slide-footer"><span>Duracion objetivo por bloque incluida en notas</span><span class="tiny">3 / 11</span></footer>
     </section>
 
     <section class="slide" data-title="Presentacion personal" data-time="1 min">
@@ -422,7 +596,7 @@
           </div>
         </div>
       </div>
-      <footer class="slide-footer"><span>Experiencia aplicable al reto de negocio</span><span class="tiny">3 / 10</span></footer>
+      <footer class="slide-footer"><span>Experiencia aplicable al reto de negocio</span><span class="tiny">4 / 11</span></footer>
     </section>
 
     <section class="slide" data-title="Problema" data-time="2 min">
@@ -453,7 +627,7 @@
           </div>
         </div>
       </div>
-      <footer class="slide-footer"><span>De la gobernanza reactiva a la gobernanza continua</span><span class="tiny">4 / 10</span></footer>
+      <footer class="slide-footer"><span>De la gobernanza reactiva a la gobernanza continua</span><span class="tiny">5 / 11</span></footer>
     </section>
 
     <section class="slide" data-title="Que es EPAC" data-time="2 min">
@@ -468,7 +642,7 @@
           <div class="step"><span class="num">04</span><h3>Monitorizar</h3><p>Defender for Cloud y Azure Policy muestran postura real.</p></div>
         </div>
       </div>
-      <footer class="slide-footer"><span>Analogia: CI/CD para la gobernanza</span><span class="tiny">5 / 10</span></footer>
+      <footer class="slide-footer"><span>Analogia: CI/CD para la gobernanza</span><span class="tiny">6 / 11</span></footer>
     </section>
 
     <section class="slide" data-title="Valor negocio" data-time="3 min">
@@ -495,7 +669,7 @@
           </div>
         </div>
       </div>
-      <footer class="slide-footer"><span>EPAC convierte control en ventaja competitiva</span><span class="tiny">6 / 10</span></footer>
+      <footer class="slide-footer"><span>EPAC convierte control en ventaja competitiva</span><span class="tiny">7 / 11</span></footer>
     </section>
 
     <section class="slide" data-title="Seguridad y compliance" data-time="2 min">
@@ -517,7 +691,7 @@
           <div class="stat"><strong>Decisiones con datos</strong> Prioridad sobre desviaciones con mayor impacto.</div>
         </div>
       </div>
-      <footer class="slide-footer"><span>Seguridad integrada en el ciclo de entrega</span><span class="tiny">7 / 10</span></footer>
+      <footer class="slide-footer"><span>Seguridad integrada en el ciclo de entrega</span><span class="tiny">8 / 11</span></footer>
     </section>
 
     <section class="slide" data-title="Agilidad IA y DevOps" data-time="2 min">
@@ -540,56 +714,63 @@
           </ul>
         </div>
       </div>
-      <footer class="slide-footer"><span>Mas velocidad sin sacrificar control</span><span class="tiny">8 / 10</span></footer>
+      <footer class="slide-footer"><span>Mas velocidad sin sacrificar control</span><span class="tiny">9 / 11</span></footer>
     </section>
 
-    <section class="slide" data-title="Caso rapido" data-time="1.5 min">
-      <header><span class="kicker">Ejemplo practico</span></header>
+    <section class="slide" data-title="Plan ejecutivo" data-time="1.5 min">
+      <header><span class="kicker">Plan ejecutivo estilo Planner</span></header>
       <div class="panel">
-        <h2>Antes vs despues: tagging y regiones permitidas</h2>
-        <div class="before-after" style="margin-top: 14px;">
-          <div class="panel before">
-            <h3 style="font-family: 'Space Grotesk', sans-serif; margin-bottom: 8px;">Antes (manual)</h3>
+        <h2>Roadmap EPAC - ejemplo de gestion ejecutiva</h2>
+        <p class="subtitle">Flujo mensual orientado a valor: gobierno, automatizacion, validacion tecnica y escalado de adopcion.</p>
+        <div class="four-col" style="margin-top: 14px; align-items: start;">
+          <div class="value-card" style="background: #fff8f3; border-top: 5px solid #ffaf38;">
+            <h3>Mes 1 - Descubrimiento y base</h3>
             <ul>
-              <li>Recursos sin tags obligatorios.</li>
-              <li>Despliegues en regiones no aprobadas.</li>
-              <li>Deteccion tardia en auditoria.</li>
+              <li><strong>Gobierno:</strong> Identificar requisitos para EPAC multi tenant.</li>
+              <li><strong>Estrategia:</strong> Evaluar opciones de automatizacion vs. manual.</li>
+              <li><strong>Validacion tecnica:</strong> Realizar PoC de EPAC en repositorio de test.</li>
             </ul>
           </div>
-          <div class="panel after">
-            <h3 style="font-family: 'Space Grotesk', sans-serif; margin-bottom: 8px;">Despues (EPAC)</h3>
+          <div class="value-card" style="background: #fff8f3; border-top: 5px solid #ce0569;">
+            <h3>Mes 2 - Estandarizacion tecnica</h3>
             <ul>
-              <li>Politicas aplicadas automaticamente en todo nuevo despliegue.</li>
-              <li>Bloqueo preventivo de configuraciones fuera de estandar.</li>
-              <li>Reporte continuo del grado de cumplimiento.</li>
+              <li><strong>Automatizacion:</strong> Homologar GitHub Actions para EPAC.</li>
+              <li><strong>Industrializacion:</strong> Crear template de EPAC en GitHub.</li>
+              <li><strong>Validacion tecnica:</strong> PoC EPAC for Deploy new Azure policies.</li>
+            </ul>
+          </div>
+          <div class="value-card" style="background: #fff8f3; border-top: 5px solid #ff5800;">
+            <h3>Mes 3 - Operacion y adopcion inicial</h3>
+            <ul>
+              <li><strong>Gobierno:</strong> Definir modelo operativo para EPAC multi tenant.</li>
+              <li><strong>Adopcion:</strong> Onboarding de las primeras entidades en EPAC.</li>
+              <li><strong>Conocimiento:</strong> Documentar el proceso y la solucion EPAC.</li>
+            </ul>
+          </div>
+          <div class="value-card" style="background: #fff8f3; border-top: 5px solid #9b044f;">
+            <h3>Mes 4 - Escalado corporativo</h3>
+            <ul>
+              <li><strong>Expansion:</strong> EPAC para entidades/otros departamentos.</li>
+              <li><strong>Resultado:</strong> modelo replicable con controles comunes y despliegue continuo.</li>
             </ul>
           </div>
         </div>
       </div>
-      <footer class="slide-footer"><span>Impacto: menos riesgo, menos retrabajo, mas velocidad</span><span class="tiny">9 / 10</span></footer>
+      <footer class="slide-footer"><span>Visibilidad ejecutiva: backlog, avance y foco</span><span class="tiny">10 / 11</span></footer>
     </section>
 
-    <section class="slide" data-title="Cierre" data-time="0.5 min">
-      <header><span class="kicker">Cierre y llamada a la accion</span></header>
+    <section class="slide" data-title="Q&A" data-time="0.5 min">
+      <header><span class="kicker">Q&A</span></header>
       <div class="panel">
-        <h2>Empieza pequeno, escala rapido</h2>
-        <div class="two-col" style="margin-top: 12px;">
-          <div>
-            <h3 style="font-family: 'Space Grotesk', sans-serif; margin-bottom: 8px;">Propuesta de arranque (1 semana)</h3>
-            <ul>
-              <li>Baseline inicial en una landing zone con politicas criticas activas.</li>
-              <li>Pipeline de gobierno operativo con GitHub Actions o Azure DevOps.</li>
-              <li>Evolucion por fases segun necesidades del cliente y nuevos requisitos.</li>
-            </ul>
-          </div>
-          <div>
-            <h3 style="font-family: 'Space Grotesk', sans-serif; margin-bottom: 8px;">Mensaje para negocio</h3>
-            <p class="subtitle">EPAC convierte la gobernanza en una capacidad de ejecucion: arranque rapido, escalado controlado y valor probado en clientes de alta exigencia durante los ultimos 3 anos.</p>
-            <p class="subtitle" style="margin-top: 8px;">La adopcion sostenida y la satisfaccion de otros equipos respaldan su aplicacion en nuevos programas.</p>
-          </div>
+        <h2>Preguntas y respuestas</h2>
+        <p class="subtitle">Espacio abierto para resolver dudas de negocio, modelo operativo y siguiente fase de adopcion de EPAC.</p>
+        <div class="three-col" style="margin-top: 12px;">
+          <div class="value-card"><h3>Negocio</h3><p>Impacto esperado, riesgos y valor en el primer trimestre.</p></div>
+          <div class="value-card"><h3>Operacion</h3><p>Gobierno, ownership y gestion de excepciones.</p></div>
+          <div class="value-card"><h3>Roadmap</h3><p>Prioridades para consolidar y escalar en entidades.</p></div>
         </div>
       </div>
-      <footer class="slide-footer"><span>Gracias</span><span class="tiny">10 / 10</span></footer>
+      <footer class="slide-footer"><span>Gracias</span><span class="tiny">11 / 11</span></footer>
     </section>
 
     <div class="controls" aria-label="Controles de diapositivas">
