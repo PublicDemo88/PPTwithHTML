@@ -1,12 +1,19 @@
 # Presentacion Ejecutiva EPAC (HTML)
 
-Archivo principal: `index.html`
+Archivo principal: `index.html` (indice de webcasts)
+
+## Estructura actual
+
+- `index.html`: portada de navegacion (selector de webcast)
+- `webcast-1-ejecutivo.html`: sesion ejecutiva/empresarial
+- `webcast-2-tecnico.html`: sesion tecnica con detalle + demo
 
 ## Como usar
 
 1. Abre `index.html` en el navegador.
-2. Navega con flechas (`←` `→`) o botones en pantalla.
-3. Para exportar a PDF: `Ctrl + P` y guardar como PDF.
+2. Selecciona el webcast que quieras abrir.
+3. Dentro de cada webcast, navega con flechas (`←` `→`) o botones en pantalla.
+4. Para exportar a PDF: `Ctrl + P` y guardar como PDF.
 
 ## Estructura de la narrativa (15 min)
 
